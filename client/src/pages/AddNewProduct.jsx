@@ -11,154 +11,207 @@ toast.configure();
 // adding new courses for faculty
 
 class AddNewProduct extends Component {
-
-
-  componentDidMount() {
-    if (localStorage) {
-      const id = localStorage.getItem("jwtToken");
-      this.setState({ token: id });
+    state = {
+        image: [],
+        token: "",
+    };
+    componentDidMount() {
+        if (localStorage) {
+            const id = localStorage.getItem("jwtToken");
+            this.setState({ token: id });
+        }
     }
-  }
 
- //getting input from form
- handleChange = (e) => {
-  const { name, value } = e.target;
-  this.setState({ [name]: value });
- 
-};
-  //fetching api and sending data to route
+    //getting input from form
 
+    //fetching api and sending data to route
 
-handleFormData = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const datas = await axios.post(
-      "/addNewProduct",
-      formData
-    );
-    if (datas.status === 200) {
-      alert("Uploaded Successfully");
-      this.props.history.push("/dashboard");
-    }
-  };
+    handleFormData = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(formData);
+        const datas = await axios.post("/addproduct", formData);
+        if (datas.status === 200) {
+            alert("Uploaded Successfully");
+            this.props.history.push("/dashboard");
+        }
+    };
 
-  render() {
-    return (
-      <div className="container-fluid w-50">
-        <form  onSubmit={this.handleFormData} enctype="multipart/form-data">
-          <div className="form-group ">
-            {/* add title */}
-            <label for="exampleInputEmail1">Add Product Title</label>
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="product_name"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Title"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label for="exampleFormControlTextarea1">Product price</label>
-            <textarea
-              onChange={this.handleChange}
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              name="price"
-              required
-            ></textarea>
-          </div>
-          {/* 
+    handleChange = (event) => {
+        const { value } = event.target;
+        let newState = this.state;
+        newState.image.push(value);
+        this.setState(newState);
+    };
+
+    render() {
+        return (
+            <div className="container-fluid w-50">
+                <form
+                    onSubmit={this.handleFormData}
+                    enctype="multipart/form-data"
+                >
+                    <div className="form-group ">
+                        {/* add title */}
+                        <label for="exampleInputEmail1">
+                            Add Product Title
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            name="product_name"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="Title"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            Product price
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            name="price"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            required
+                        />
+                    </div>
+                    {/* 
 add dept */}
-       <div className="form-group">
-            <label for="exampleFormControlTextarea1">Product Quantity</label>
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="product_quantity"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder=""
-              required
-            />
-          </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            Product Quantity
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            name="product_quantity"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder=""
+                            required
+                        />
+                    </div>
 
-          {/* 
+                    {/* 
 add course room */}
-       <div className="form-group">
-            <label for="exampleFormControlTextarea1">product_category</label>
-            <input
-              onChange={this.handleChange}
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              name="product_category"
-              required
-            />
-          </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            product_category
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            className="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="3"
+                            name="product_category"
+                            type="text"
+                            required
+                        />
+                    </div>
 
-                {/* 
+                    {/* 
 add waitlist */}
-       <div className="form-group">
-            <label for="exampleFormControlTextarea1">product_brand</label>
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="product_brand"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder=""
-              required
-            />
-          </div>
-                     {/* 
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            product_brand
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            name="product_brand"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder=""
+                            required
+                        />
+                    </div>
+                    {/* 
 add course-team */}
-       <div className="form-group">
-            <label for="exampleFormControlTextarea1">product_brand_status</label>
-            <input
-              onChange={this.handleChange}
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              name="product_brand_status"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label for="exampleFormControlTextarea1">product_category_status</label>
-            <input
-              onChange={this.handleChange}
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              name="product_category_status"
-              required
-            />
-          </div>
-        <div className="form-group">
-            <label for="exampleFormControlTextarea1">product_image</label>
-                <input className="form-control" type="file" name="image" onChange={this.handleChange} />
-        </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            product_brand_status
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            className="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="3"
+                            name="product_brand_status"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlTextarea1">
+                            product_category_status
+                        </label>
+                        <input
+                            onChange={this.handleChange}
+                            className="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="3"
+                            type="text"
+                            name="product_category_status"
+                            required
+                        />
+                    </div>
+                    <h5>Select Product Image</h5>
 
-         
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
-      </div>
-    );
-  }
+                    <div>
+                        <div className="form-group">
+                            <br />
+                            <div className="input-group">
+                                <div className="custom-file">
+                                    <input
+                                        type="file"
+                                        id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01"
+                                        name="image"
+                                        onChange={this.handleChange}
+                                    />
+                                    <label
+                                        class="custom-file-label"
+                                        for="inputGroupFile01"
+                                    >
+                                        choose product
+                                        {/* {!this.state.image[0]
+                                            ? " image"
+                                            : this.state.image[0]} */}
+                                    </label>
+                                </div>
+                            </div>
+                            <p>
+                                You will not see selected image name.Just click
+                                on submit button to upload image
+                            </p>
+                        </div>
+
+                        {/*  */}
+
+                        {/*  */}
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state,
-  };
+    return {
+        auth: state,
+    };
 };
 
-export default connect(mapStateToProps)(withRouter( AddNewProduct ));
+export default connect(mapStateToProps)(withRouter(AddNewProduct));

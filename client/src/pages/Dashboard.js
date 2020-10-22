@@ -24,42 +24,8 @@ class Dashboard extends Component {
         this.props.history.push("/login");
     };
 
-    typehandle = (type) => {
-        if (type === "vendor") {
-            return (
-                <div className="">
-                    <li className="li1">
-                        <button className="btn btn-primary ">
-                            <a style={{ color: "white" }} href="/addnewproduct">
-                                Add New Product
-                            </a>
-                        </button>
-                    </li>
-                    <li className="li1">
-                        <button className="btn btn-primary ">
-                            <a style={{ color: "white" }} href="">
-                                Delet Product
-                            </a>
-                        </button>
-                    </li>
-                    <li className="li1">
-                        <button className="btn btn-primary ">
-                            <a style={{ color: "white" }} href="">
-                                Edit Product
-                            </a>
-                        </button>
-                    </li>
-                    <li className="li1">
-                        <button className="btn btn-primary ">
-                            <a style={{ color: "white" }} href="">
-                                List categories and brands
-                            </a>
-                        </button>
-                    </li>
-                </div>
-            );
-        } else if (type === "admin") {
-        }
+    handleaddbrands = async (e) => {
+        e.preventDefault();
     };
     render() {
         return (
@@ -69,13 +35,6 @@ class Dashboard extends Component {
                     <div className="main">
                         <ul class="list-unstyled">
                             <li className="li1">
-                                <button className="btn btn-primary ">
-                                    <a style={{ color: "white" }} href="">
-                                        Edit Profile
-                                    </a>
-                                </button>
-                            </li>
-                            <li className="li1">
                                 <button
                                     onClick={this.handleLogout}
                                     className="btn btn-primary  "
@@ -83,6 +42,22 @@ class Dashboard extends Component {
                                     Logout
                                 </button>
                             </li>
+                            <li className="li1">
+                                <button
+                                    style={{ color: "white" }}
+                                    className="btn btn-primary "
+                                >
+                                    <a
+                                        style={{
+                                            color: "white",
+                                        }}
+                                        href="/allproduct"
+                                    >
+                                        Get all Products
+                                    </a>
+                                </button>
+                            </li>
+
                             {this.props.users.user.user_type === "vendor" ? (
                                 <div className="">
                                     <li className="li1">
@@ -99,61 +74,83 @@ class Dashboard extends Component {
                                         <button className="btn btn-primary ">
                                             <a
                                                 style={{ color: "white" }}
-                                                href=""
+                                                href="/allproduct"
                                             >
                                                 Delet Product
                                             </a>
                                         </button>
                                     </li>
+
                                     <li className="li1">
                                         <button className="btn btn-primary ">
                                             <a
                                                 style={{ color: "white" }}
-                                                href=""
-                                            >
-                                                Edit Product
-                                            </a>
-                                        </button>
-                                    </li>
-                                    <li className="li1">
-                                        <button className="btn btn-primary ">
-                                            <a
-                                                style={{ color: "white" }}
-                                                href=""
+                                                href="/allproduct"
                                             >
                                                 List categories and brands
                                             </a>
                                         </button>
                                     </li>
                                 </div>
-                            ) : (
-                                <div>
-                                    <li className="li1">
-                                        <button
-                                            style={{ color: "white" }}
-                                            // onClick="handleViewCourse"
-                                            className="btn btn-primary "
-                                        >
-                                            <a
-                                                style={{ color: "white" }}
-                                                href=""
-                                            >
-                                                View All Courses
-                                            </a>
-                                        </button>
-                                    </li>
+                            ) : null}
 
-                                    <li className="li1">
-                                        <button
-                                            style={{ color: "white" }}
-                                            // onClick={handleRegisteredCourse}
-                                            className="btn btn-primary "
-                                        >
-                                            My Registered course
-                                        </button>
-                                    </li>
+                            {this.props.users.user.user_type === "admin" ? (
+                                <div>
+                                    <div>
+                                        <li className="li1">
+                                            <button
+                                                style={{ color: "white" }}
+                                                // onClick="handleViewCourse"
+                                                className="btn btn-primary "
+                                            >
+                                                <a
+                                                    style={{
+                                                        color: "white",
+                                                    }}
+                                                    href="/register"
+                                                >
+                                                    add user
+                                                </a>
+                                            </button>
+                                        </li>
+                                        <li className="li1">
+                                            <button className="btn btn-primary ">
+                                                <a
+                                                    style={{ color: "white" }}
+                                                    href="/allproduct"
+                                                >
+                                                    List categories and brands
+                                                </a>
+                                            </button>
+                                        </li>
+                                        <li className="li1">
+                                            <button className="btn btn-primary ">
+                                                <a
+                                                    style={{ color: "white" }}
+                                                    href="/addnewproduct"
+                                                >
+                                                    Add New Product
+                                                </a>
+                                            </button>
+                                        </li>
+                                        <li className="li1">
+                                            <button className="btn btn-primary ">
+                                                <a
+                                                    style={{ color: "white" }}
+                                                    href="/allproduct"
+                                                >
+                                                    Delet Product
+                                                </a>
+                                            </button>
+                                        </li>
+                                    </div>
                                 </div>
-                            )}
+                            ) : null}
+                            {this.props.users.user.user_type === "user" ? (
+                                <div>
+                                    <div></div>
+                                </div>
+                            ) : null}
                         </ul>
                     </div>
                 </div>
@@ -171,9 +168,7 @@ class Dashboard extends Component {
 
                             <h4>Bio: {this.props.users.user.bio}</h4>
                             <h4>status: {this.props.users.user.status}</h4>
-                            <h4>
-                                Last-login: {this.props.users.user.last_login}
-                            </h4>
+                            <h4>Last-login: 1 day ago</h4>
                         </div>
                     </div>
                 </div>
