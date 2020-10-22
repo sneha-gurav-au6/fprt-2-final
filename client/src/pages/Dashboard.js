@@ -32,10 +32,10 @@ class Dashboard extends Component {
         this.props.history.push("/allproduct");
     };
     //redirecting to add new product
-    handleaddproduct = (e) => {
+    handleaddproduct = async (e) => {
         this.props.history.push("/addnewproduct");
     };
-    handleRegister = (e) => {
+    handleRegister = async (e) => {
         this.props.history.push("/register");
     };
     render() {

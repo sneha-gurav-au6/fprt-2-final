@@ -23,7 +23,7 @@ class AllProduct extends Component {
         this.setState({ product: data.data });
     }
     //delet product by clicking on button
-    deletproduct = (e) => {
+    deletproduct = async (e) => {
         const id = e.target.id;
         console.log(id);
         //calling routes
