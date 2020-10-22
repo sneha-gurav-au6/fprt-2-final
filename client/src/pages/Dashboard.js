@@ -24,8 +24,9 @@ class Dashboard extends Component {
         this.props.history.push("/login");
     };
 
-    handleaddbrands = async (e) => {
+    getallproduct = async (e) => {
         e.preventDefault();
+        this.props.history.push("/allproduct");
     };
 
     handleaddproduct = (e) => {
@@ -77,7 +78,7 @@ class Dashboard extends Component {
                                         <button className="btn btn-primary ">
                                             <a
                                                 style={{ color: "white" }}
-                                                href="/allproduct"
+                                                href={"/allproduct"}
                                             >
                                                 Delet Product
                                             </a>
@@ -88,7 +89,7 @@ class Dashboard extends Component {
                                         <button className="btn btn-primary ">
                                             <a
                                                 style={{ color: "white" }}
-                                                href="/allproduct"
+                                                href={"/allproduct"}
                                             >
                                                 List categories and brands
                                             </a>
@@ -127,23 +128,21 @@ class Dashboard extends Component {
                                             </button>
                                         </li>
                                         <li className="li1">
-                                            <button className="btn btn-primary ">
-                                                <a
-                                                    style={{ color: "white" }}
-                                                    href="/addnewproduct"
-                                                >
-                                                    Add New Product
-                                                </a>
+                                            <button
+                                                className="btn btn-primary "
+                                                style={{ color: "white" }}
+                                                onClick={this.handleaddproduct}
+                                            >
+                                                Add New Product
                                             </button>
                                         </li>
                                         <li className="li1">
-                                            <button className="btn btn-primary ">
-                                                <a
-                                                    style={{ color: "white" }}
-                                                    href="/allproduct"
-                                                >
-                                                    Delet Product
-                                                </a>
+                                            <button
+                                                className="btn btn-primary"
+                                                style={{ color: "white" }}
+                                                onClick={this.getallproduct}
+                                            >
+                                                Delet Product
                                             </button>
                                         </li>
                                     </div>
