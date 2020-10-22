@@ -67,6 +67,7 @@ module.exports = {
     },
     //getting all product
     getAllCources: async (req, res) => {
+        //finding all product in product schema
         const course = Product.find()
             .then((data) => {
                 console.log(data);
@@ -76,11 +77,12 @@ module.exports = {
                 res.status(400).send("No product Found");
             });
     },
-
+    //deleting perticular product
     deleteProduct: async (req, res) => {
         const user = req.user.id;
         const product_id = req.params.id;
         try {
+            //finding perticular product and delete by id
             const product = await Product.findOneAndDelete({
                 _id: product_id,
             });

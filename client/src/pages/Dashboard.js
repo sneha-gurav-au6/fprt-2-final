@@ -27,6 +27,10 @@ class Dashboard extends Component {
     handleaddbrands = async (e) => {
         e.preventDefault();
     };
+
+    handleaddproduct = (e) => {
+        this.props.history.push("/addnewproduct");
+    };
     render() {
         return (
             <div className="row ">
@@ -61,13 +65,12 @@ class Dashboard extends Component {
                             {this.props.users.user.user_type === "vendor" ? (
                                 <div className="">
                                     <li className="li1">
-                                        <button className="btn btn-primary ">
-                                            <a
-                                                style={{ color: "white" }}
-                                                href="/addnewproduct"
-                                            >
-                                                Add New Product
-                                            </a>
+                                        <button
+                                            style={{ color: "white" }}
+                                            className="btn btn-primary "
+                                            onClick={this.handleaddproduct}
+                                        >
+                                            Add New Product
                                         </button>
                                     </li>
                                     <li className="li1">
