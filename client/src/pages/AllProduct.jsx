@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import Spinner from "./Spinner";
 
 class AllProduct extends Component {
+    //setting all state
     state = {
         image: "",
         name: "",
@@ -15,14 +16,17 @@ class AllProduct extends Component {
         quantity: "",
         product: null,
     };
+    //getting all product by calling route
     async componentDidMount() {
         const data = await axios.get("/getallproduct");
         console.log(data.data);
         this.setState({ product: data.data });
     }
+    //delet product by clicking on button
     deletproduct = (e) => {
         const id = e.target.id;
         console.log(id);
+        //calling routes
         axios.post(`/deleteProduct/${id}`);
 
         //alerts when product delets

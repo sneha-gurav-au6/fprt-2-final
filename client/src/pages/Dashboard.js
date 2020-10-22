@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import "./style/dashboard.css";
 import { logoutUser } from "../redux/actions/userAction";
@@ -10,27 +11,32 @@ import { ToastContainer, toast } from "react-toastify";
 toast.configure();
 
 class Dashboard extends Component {
+    //setting state
     state = {
         user_type: "",
     };
-
+    //logout functon call logout
     handleLogout = async (e) => {
         e.preventDefault();
+        //dispatchng data
         this.props.logoutUser();
         toast.success("Logout Successfully!", {
             position: toast.POSITION.TOP_CENTER,
         });
-
+        //redirecting to login
         this.props.history.push("/login");
     };
-
+    //redirecting to all product
     getallproduct = async (e) => {
         e.preventDefault();
         this.props.history.push("/allproduct");
     };
-
+    //redirecting to add new product
     handleaddproduct = (e) => {
         this.props.history.push("/addnewproduct");
+    };
+    handleRegister = (e) => {
+        this.props.history.push("/register");
     };
     render() {
         return (
@@ -49,17 +55,11 @@ class Dashboard extends Component {
                             </li>
                             <li className="li1">
                                 <button
-                                    style={{ color: "white" }}
                                     className="btn btn-primary "
+                                    onClick={this.getallproduct}
+                                    style={{ color: "white" }}
                                 >
-                                    <a
-                                        style={{
-                                            color: "white",
-                                        }}
-                                        href="/allproduct"
-                                    >
-                                        Get all Products
-                                    </a>
+                                    Get all product
                                 </button>
                             </li>
 
@@ -75,24 +75,22 @@ class Dashboard extends Component {
                                         </button>
                                     </li>
                                     <li className="li1">
-                                        <button className="btn btn-primary ">
-                                            <a
-                                                style={{ color: "white" }}
-                                                href={"/allproduct"}
-                                            >
-                                                Delet Product
-                                            </a>
+                                        <button
+                                            className="btn btn-primary "
+                                            onClick={this.getallproduct}
+                                            style={{ color: "white" }}
+                                        >
+                                            Delet Product
                                         </button>
                                     </li>
 
                                     <li className="li1">
-                                        <button className="btn btn-primary ">
-                                            <a
-                                                style={{ color: "white" }}
-                                                href={"/allproduct"}
-                                            >
-                                                List categories and brands
-                                            </a>
+                                        <button
+                                            className="btn btn-primary "
+                                            onClick={this.getallproduct}
+                                            style={{ color: "white" }}
+                                        >
+                                            List categories and brands
                                         </button>
                                     </li>
                                 </div>
@@ -104,27 +102,19 @@ class Dashboard extends Component {
                                         <li className="li1">
                                             <button
                                                 style={{ color: "white" }}
-                                                // onClick="handleViewCourse"
+                                                onClick={this.handleRegister}
                                                 className="btn btn-primary "
                                             >
-                                                <a
-                                                    style={{
-                                                        color: "white",
-                                                    }}
-                                                    href="/register"
-                                                >
-                                                    add user
-                                                </a>
+                                                add user
                                             </button>
                                         </li>
                                         <li className="li1">
-                                            <button className="btn btn-primary ">
-                                                <a
-                                                    style={{ color: "white" }}
-                                                    href="/allproduct"
-                                                >
-                                                    List categories and brands
-                                                </a>
+                                            <button
+                                                className="btn btn-primary "
+                                                onClick={this.getallproduct}
+                                                style={{ color: "white" }}
+                                            >
+                                                List categories and brands
                                             </button>
                                         </li>
                                         <li className="li1">

@@ -5,7 +5,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 toast.configure();
-
+//register user
 export const RegisterUsers = (data1) => async (dispatch) => {
     console.log(data1.newUser);
 
@@ -25,7 +25,7 @@ export const RegisterUsers = (data1) => async (dispatch) => {
             dispatch({ type: Get_Error, payload: err.response.data });
         });
 };
-
+//login user
 export const loginUsers = (data) => async (dispatch) => {
     console.log(data.newUser);
     await axios

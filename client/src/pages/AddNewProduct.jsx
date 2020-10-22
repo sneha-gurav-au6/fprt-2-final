@@ -8,13 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 toast.configure();
 
-// adding new courses for faculty
+// adding new product
 
 class AddNewProduct extends Component {
     state = {
         image: [],
         token: "",
     };
+    //to set userid
     componentDidMount() {
         if (localStorage) {
             const id = localStorage.getItem("jwtToken");
@@ -36,7 +37,7 @@ class AddNewProduct extends Component {
             this.props.history.push("/dashboard");
         }
     };
-
+    //seving changing data to state
     handleChange = (event) => {
         const { value } = event.target;
         let newState = this.state;
@@ -82,7 +83,7 @@ class AddNewProduct extends Component {
                         />
                     </div>
                     {/* 
-add dept */}
+add quantity */}
                     <div className="form-group">
                         <label for="exampleFormControlTextarea1">
                             Product Quantity
@@ -100,7 +101,7 @@ add dept */}
                     </div>
 
                     {/* 
-add course room */}
+add categoery */}
                     <div className="form-group">
                         <label for="exampleFormControlTextarea1">
                             product_category
@@ -117,7 +118,7 @@ add course room */}
                     </div>
 
                     {/* 
-add waitlist */}
+add brand */}
                     <div className="form-group">
                         <label for="exampleFormControlTextarea1">
                             product_brand
@@ -134,7 +135,7 @@ add waitlist */}
                         />
                     </div>
                     {/* 
-add course-team */}
+add brand status */}
                     <div className="form-group">
                         <label for="exampleFormControlTextarea1">
                             product_brand_status
@@ -149,6 +150,8 @@ add course-team */}
                             required
                         />
                     </div>
+                    {/* 
+add categoery status */}
                     <div className="form-group">
                         <label for="exampleFormControlTextarea1">
                             product_category_status
@@ -163,6 +166,8 @@ add course-team */}
                             required
                         />
                     </div>
+                    {/* 
+add images */}
                     <h5>Select Product Image</h5>
 
                     <div>
