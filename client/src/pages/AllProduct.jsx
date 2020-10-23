@@ -31,7 +31,8 @@ class AllProduct extends Component {
 
         //alerts when product delets
         alert("Product Deleted Successfully");
-        window.location.reload();
+
+        this.props.history.push("/dashboard");
     };
 
     render() {
@@ -44,9 +45,9 @@ class AllProduct extends Component {
                         {this.state.product.map((p) => (
                             <div
                                 className="card col-md-3"
-                                style={{ width: "18rem" }}
+                                style={{ width: "18rem",backgroundColor:"gray" }}
                             >
-                                <img
+                                <img style={{width="200px",height:"200px"}}
                                     src={p.image[0]}
                                     className="card-img-top"
                                     alt=""
